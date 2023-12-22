@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "./logo.png";
-import { useHistory,Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 function Login() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -33,19 +33,19 @@ function Login() {
         const formData = new FormData();
         formData.append("file", selectedFile);
         console.log(selectedList)
-        formData.append("fields",selectedList)
-        
+        formData.append("fields", selectedList)
 
-        fetch("http://localhost:8001/upload", {
+
+        fetch("https://zentrades-task2-server.vercel.app/upload", {
             method: "POST",
             body: formData,
         })
             .then((response) => response.json())
-            .then((data) =>{
+            .then((data) => {
                 // console.log(data.data)
                 localStorage.setItem('myData', JSON.stringify(data.data));
-                navigate("/data",data);
-               
+                navigate("/data", data);
+
             })
             .catch((error) => console.error("Error:", error));
     };
@@ -192,13 +192,13 @@ function Login() {
                 </div>
             </div>
             <div className="flex justify-end">
-  <button onClick={() => handleFileSubmit()} className="bg-green-500 text-white p-2 mr-10 my-5">
-    Next
-  </button>
-  <button onClick={()=> window.location.reload()} className="bg-green-500 text-white p-2 mr-10 my-5">
-      cancel
-  </button>
-</div>
+                <button onClick={() => handleFileSubmit()} className="bg-green-500 text-white p-2 mr-10 my-5">
+                    Next
+                </button>
+                <button onClick={() => window.location.reload()} className="bg-green-500 text-white p-2 mr-10 my-5">
+                    cancel
+                </button>
+            </div>
         </div>
     );
 }
