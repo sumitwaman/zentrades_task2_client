@@ -36,7 +36,7 @@ function Login() {
         formData.append("fields", selectedList)
 
 
-        fetch("https://zentrades-task2-server.vercel.app/upload", {
+        fetch("https://zentrades.onrender.com/upload", {
             method: "POST",
             body: formData,
         })
